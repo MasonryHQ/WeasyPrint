@@ -249,8 +249,9 @@ def dlopen(ffi, *names):
     for name in names:
         try:
             return ffi.dlopen(name)
-        except OSError:
-            pass
+        except OSError as e:
+            if name == 'libfontconfig.so.1':
+                raise(e)
     # Re-raise the exception.
     return ffi.dlopen(names[0])  # pragma: no cover
 
