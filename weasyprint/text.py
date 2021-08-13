@@ -248,7 +248,7 @@ def dlopen(ffi, *names):
     """Try various names for the same library, for different platforms."""
     for name in names:
         try:
-            return ffi.dlopen(name)
+            return ffi.dlopen('./lib/' + name)
         except OSError as e:
             if name == 'libfontconfig.so.1':
                 raise(e)
